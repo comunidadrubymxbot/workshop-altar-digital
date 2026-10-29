@@ -7,36 +7,48 @@ import Elemento from './Elemento.jsx'
 export default function Grada({ nivel, nombre, descripcion, elementos, imagenes, onQuitar, onReordenar }) {
   const lleno = elementos.length >= CUPO_POR_NIVEL
 
-  // id del elemento que se esta arrastrando
-  const [dragId, setDragId] = useState(null)
-  // id del elemento sobre el que esta volando el cursor
+  // id del elemento sobre el que esta volando el cursor (para resaltarlo)
   const [overId, setOverId] = useState(null)
 
-  function handleDragStart(id) {
-    setDragId(id)
+  function handleDragStart(e, id) {
+    // dataTransfer es el unico canal fiable entre dragstart y drop,
+    // especialmente cuando el evento viene de un hijo (SVG, imagen).
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text/plain', id)
   }
 
-  function handleDragOver(id) {
-    if (id !== dragId) setOverId(id)
+  function handleDragOver(e, id) {
+    // Obligatorio para que el drop sea valido.
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
+    setOverId(id)
   }
 
-  function handleDrop() {
-    if (dragId && overId && dragId !== overId) {
-      const desde = elementos.findIndex((el) => el.id === dragId)
-      const hasta = elementos.findIndex((el) => el.id === overId)
-      if (desde !== -1 && hasta !== -1) {
-        const siguiente = [...elementos]
-        const [movido] = siguiente.splice(desde, 1)
-        siguiente.splice(hasta, 0, movido)
-        onReordenar(nivel, siguiente)
-      }
-    }
-    setDragId(null)
+  function handleDrop(e, targetId) {
+    e.preventDefault()
+    const sourceId = e.dataTransfer.getData('text/plain')
     setOverId(null)
+
+    if (!sourceId || sourceId === targetId) return
+
+    const desde = elementos.findIndex((el) => el.id === sourceId)
+    const hasta = elementos.findIndex((el) => el.id === targetId)
+    if (desde === -1 || hasta === -1) return
+
+    const siguiente = [...elementos]
+    const [movido] = siguiente.splice(desde, 1)
+    siguiente.splice(hasta, 0, movido)
+    onReordenar(nivel, siguiente)
+  }
+
+  function handleDragLeave(e) {
+    // Solo limpiar si el cursor sale de la lista entera, no de un hijo.
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setOverId(null)
+    }
   }
 
   function handleDragEnd() {
-    setDragId(null)
     setOverId(null)
   }
 
@@ -54,20 +66,19 @@ export default function Grada({ nivel, nombre, descripcion, elementos, imagenes,
         </span>
       </div>
 
-      <ul className="nivel-elementos">
+      <ul
+        className="nivel-elementos"
+        onDragLeave={handleDragLeave}
+      >
         {elementos.length === 0 ? (
           <li className="nivel-vacio">Todavía no hay nada en este nivel</li>
         ) : (
           elementos.map((el) => (
-            // La `key` es lo que arregla el reproductor de Spotify: React
-            // reconoce cada elemento entre renders y no vuelve a montar el
-            // iframe de una cancion que no cambio.
             <Elemento
               key={el.id}
               elemento={el}
               urlImagen={imagenes.get(el.id)}
               onQuitar={onQuitar}
-              isDragging={dragId === el.id}
               isOver={overId === el.id}
               onDragStart={handleDragStart}
               onDragOver={handleDragOver}
