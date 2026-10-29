@@ -17,7 +17,10 @@
   --verde: #2ec27e;
   --turquesa: #35c2c7;
   --radio: 16px;
-  /* adornos.js mete aqui la hilera de petalos */
+  /* adornos.js mete aqui las cuerdas de ring y los esquineros */
+  --cuerdas: none;
+  --esquinero: none;
+  /* --petalos se mantiene por compatibilidad */
   --petalos: none;
 }
 
@@ -169,26 +172,73 @@ main {
 
 .nivel {
   position: relative;
-  background: var(--morado-alto);
-  border: 2px solid var(--borde);
+  /* Ring mat: subtle dark canvas grid over the purple background */
+  background-color: #1a0f2e;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(180, 0, 0, 0.08) 19px,
+      rgba(180, 0, 0, 0.08) 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(180, 0, 0, 0.08) 19px,
+      rgba(180, 0, 0, 0.08) 20px
+    );
+  /* Red rope border */
+  border: 3px solid #cc0000;
+  box-shadow: 0 0 0 1px #8b0000, inset 0 0 24px rgba(0, 0, 0, 0.5);
   border-radius: var(--radio);
-  padding: 0.9rem 1.1rem 1.7rem;
+  padding: 0.9rem 1.1rem 2.2rem;
 }
 
-/* La hilera de petalos de cempasuchil que remata la grada por abajo, como
-   el mantel de un altar de verdad. */
+/* Esquineros: postes en las cuatro esquinas usando ::before (izquierda)
+   y ::after (derecha + cuerdas). Usamos un outline trick con gradiente
+   para poner dos imagenes en un solo pseudo-elemento. */
+.nivel::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: -14px;
+  width: 24px;
+  background-image: var(--esquinero);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 24px 48px;
+  pointer-events: none;
+  /* segundo esquinero abajo */
+  /* Se logra con dos backgrounds */
+  background-image: var(--esquinero), var(--esquinero);
+  background-position: top center, bottom center;
+  background-size: 24px 48px, 24px 48px;
+  background-repeat: no-repeat, no-repeat;
+}
+
 .nivel::after {
   content: '';
   position: absolute;
-  left: 0.6rem;
-  right: 0.6rem;
-  bottom: -0.55rem;
-  height: 26px;
-  background-image: var(--petalos);
-  background-repeat: repeat-x;
-  background-position: left center;
-  background-size: auto 100%;
+  /* Esquineros derechos + cuerdas en el borde inferior */
+  top: -4px;
+  bottom: -4px;
+  right: -14px;
+  left: -14px;
   pointer-events: none;
+  /* Esquinero derecho arriba, esquinero derecho abajo, cuerdas al pie */
+  background-image: var(--esquinero), var(--esquinero), var(--cuerdas);
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  background-position:
+    top right,
+    bottom right,
+    left bottom;
+  background-size:
+    24px 48px,
+    24px 48px,
+    auto 28px;
 }
 
 /* Las gradas se ensanchan hacia abajo: la base es la mas ancha. El orden
