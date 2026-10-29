@@ -791,3 +791,34 @@ footer {
     animation: none;
   }
 }
+
+/* --- Drag and drop --------------------------------------------------- */
+
+/* El elemento que se esta arrastrando: se apaga para que el hueco
+   sea visible en su posicion original. */
+.elemento-arrastrando {
+  opacity: 0.35;
+  cursor: grabbing;
+}
+
+/* El elemento sobre el que va a caer: borde naranja y un ligero
+   desplazamiento hacia la derecha para indicar la posicion de insercion. */
+.elemento-sobre {
+  border-color: var(--naranja);
+  box-shadow: -4px 0 0 0 var(--naranja);
+  transform: translateX(3px);
+}
+
+/* Cursor de agarre cuando el elemento es arrastrable. */
+[draggable="true"] {
+  cursor: grab;
+}
+
+/* Sin animacion de insercion para quien prefiere menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .elemento-sobre {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--naranja);
+  }
+}

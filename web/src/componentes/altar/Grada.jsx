@@ -1,10 +1,44 @@
 // Una grada del altar, con su encabezado, su contador y sus elementos.
 
+import { useState } from 'react'
 import { CUPO_POR_NIVEL } from '../../catalogo/elementos.js'
 import Elemento from './Elemento.jsx'
 
-export default function Grada({ nombre, descripcion, elementos, imagenes, onQuitar }) {
+export default function Grada({ nivel, nombre, descripcion, elementos, imagenes, onQuitar, onReordenar }) {
   const lleno = elementos.length >= CUPO_POR_NIVEL
+
+  // id del elemento que se esta arrastrando
+  const [dragId, setDragId] = useState(null)
+  // id del elemento sobre el que esta volando el cursor
+  const [overId, setOverId] = useState(null)
+
+  function handleDragStart(id) {
+    setDragId(id)
+  }
+
+  function handleDragOver(id) {
+    if (id !== dragId) setOverId(id)
+  }
+
+  function handleDrop() {
+    if (dragId && overId && dragId !== overId) {
+      const desde = elementos.findIndex((el) => el.id === dragId)
+      const hasta = elementos.findIndex((el) => el.id === overId)
+      if (desde !== -1 && hasta !== -1) {
+        const siguiente = [...elementos]
+        const [movido] = siguiente.splice(desde, 1)
+        siguiente.splice(hasta, 0, movido)
+        onReordenar(nivel, siguiente)
+      }
+    }
+    setDragId(null)
+    setOverId(null)
+  }
+
+  function handleDragEnd() {
+    setDragId(null)
+    setOverId(null)
+  }
 
   return (
     <section className="nivel">
@@ -33,6 +67,12 @@ export default function Grada({ nombre, descripcion, elementos, imagenes, onQuit
               elemento={el}
               urlImagen={imagenes.get(el.id)}
               onQuitar={onQuitar}
+              isDragging={dragId === el.id}
+              isOver={overId === el.id}
+              onDragStart={handleDragStart}
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              onDragEnd={handleDragEnd}
             />
           ))
         )}

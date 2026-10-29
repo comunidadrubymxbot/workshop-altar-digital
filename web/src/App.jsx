@@ -61,6 +61,7 @@ export default function App() {
             elementos={altar.elementos}
             imagenes={altar.imagenes}
             onQuitar={altar.quitar}
+            onReordenar={altar.reordenar}
           />
         )}
 

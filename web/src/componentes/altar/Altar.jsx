@@ -14,17 +14,19 @@ function deLaGrada(elementos, nivel) {
     .sort((a, b) => a.creadoEn.localeCompare(b.creadoEn))
 }
 
-export default function Altar({ elementos, imagenes, onQuitar }) {
+export default function Altar({ elementos, imagenes, onQuitar, onReordenar }) {
   return (
     <div id="altar">
       {NIVELES.map(({ nivel, nombre, descripcion }) => (
         <Grada
           key={nivel}
+          nivel={nivel}
           nombre={nombre}
           descripcion={descripcion}
           elementos={deLaGrada(elementos, nivel)}
           imagenes={imagenes}
           onQuitar={onQuitar}
+          onReordenar={onReordenar}
         />
       ))}
     </div>

@@ -150,6 +150,17 @@ export function useAltar() {
     [elementos],
   )
 
+  /**
+   * Reordena los elementos de un nivel en el estado local.
+   * Visual-only: no llama a la API, se pierde al refrescar.
+   */
+  const reordenar = useCallback((nivel, ordenNuevo) => {
+    setElementos((prev) => {
+      const otrosNiveles = prev.filter((el) => el.nivel !== nivel)
+      return [...otrosNiveles, ...ordenNuevo]
+    })
+  }, [])
+
   return {
     elementos,
     imagenes,
@@ -159,6 +170,7 @@ export function useAltar() {
     setAviso,
     agregar,
     quitar,
+    reordenar,
     cuantosEn,
     nivelLleno,
     refrescar,

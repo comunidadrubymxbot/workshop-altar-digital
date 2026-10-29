@@ -22,7 +22,7 @@ import { arteDe } from '../../catalogo/arte.js'
 import { idDeCancion, urlDelReproductor } from '../../lib/spotify.js'
 import { linkSeguro } from '../../lib/enlaces.js'
 
-export default function Elemento({ elemento, urlImagen, onQuitar }) {
+export default function Elemento({ elemento, urlImagen, onQuitar, isDragging, isOver, onDragStart, onDragOver, onDrop, onDragEnd }) {
   const etiqueta = etiquetaDe(elemento.tipo)
   const link = linkSeguro(elemento.link)
   const cancion = link ? idDeCancion(link) : null
@@ -30,9 +30,19 @@ export default function Elemento({ elemento, urlImagen, onQuitar }) {
   const clases = ['elemento']
   if (cancion) clases.push('elemento-ancho')
   if (elemento.pendiente) clases.push('elemento-pendiente')
+  if (isDragging) clases.push('elemento-arrastrando')
+  if (isOver) clases.push('elemento-sobre')
 
   return (
-    <li className={clases.join(' ')} data-tipo={elemento.tipo}>
+    <li
+      className={clases.join(' ')}
+      data-tipo={elemento.tipo}
+      draggable={!elemento.pendiente}
+      onDragStart={() => onDragStart(elemento.id)}
+      onDragOver={(e) => { e.preventDefault(); onDragOver(elemento.id) }}
+      onDrop={(e) => { e.preventDefault(); onDrop() }}
+      onDragEnd={onDragEnd}
+    >
       <div className="elemento-figura">
         {urlImagen ? (
           <img src={urlImagen} alt={elemento.texto || etiqueta} loading="lazy" />
