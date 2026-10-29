@@ -153,7 +153,10 @@ export async function borrar(id) {
  */
 export async function urlDeImagen(elemento) {
   if (!elemento.imageKey) return null
-  const { url } = await get(`/uploads/${encodeURIComponent(elemento.imageKey)}`)
+  // imageKey tiene la forma "<altarId>/<uuid>.jpeg". El slash es un separador
+  // real de ruta que {proxy+} captura. No se codifica nada: el altarId es un
+  // hostname y el uuid solo tiene caracteres seguros [a-z0-9-].
+  const { url } = await get(`/uploads/${elemento.imageKey}`)
   return url
 }
 
