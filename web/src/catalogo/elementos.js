@@ -84,6 +84,42 @@ export const TIPOS = {
     ayuda: 'De quién era',
     pideImagen: true,
   },
+  toalla: {
+    etiqueta: 'Toalla de luchador',
+    grupo: 'personal',
+    nivel: 2,
+    pideTexto: true,
+    ayuda: 'El nombre o apodo que llevaba bordado',
+  },
+  cinturon: {
+    etiqueta: 'Cinturón de campeón',
+    grupo: 'personal',
+    nivel: 2,
+    pideTexto: true,
+    ayuda: 'El campeonato que ganó',
+  },
+  bandera: {
+    etiqueta: 'Bandera',
+    grupo: 'personal',
+    nivel: 1,
+    pideTexto: true,
+    ayuda: 'De dónde era',
+  },
+  entrada: {
+    etiqueta: 'Bata de entrada',
+    grupo: 'personal',
+    nivel: 3,
+    pideTexto: true,
+    ayuda: 'Su apodo o frase al salir al ring',
+    pideImagen: true,
+  },
+  logo_aew: {
+    etiqueta: 'Logo AEW',
+    grupo: 'personal',
+    nivel: 1,
+    pideTexto: true,
+    ayuda: 'All Elite Wrestling',
+  },
 }
 
 export const NIVELES = [

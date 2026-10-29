@@ -180,6 +180,67 @@ export const ARTE = {
     <path d="M80 56 q 6 0 6 -8 q 0 -8 -6 -8" stroke="${OSCURO}" stroke-width="3" fill="none"/>
   `),
 
+  // Toalla de luchador. La que lleva bordado su nombre.
+  toalla: svg(`
+    <rect x="14" y="28" width="72" height="52" rx="6" fill="${CREMA}"/>
+    <rect x="14" y="28" width="72" height="10" rx="4" fill="${MORADO}"/>
+    <rect x="14" y="70" width="72" height="10" rx="4" fill="${MORADO}"/>
+    <rect x="44" y="28" width="12" height="52" fill="${NARANJA}" opacity="0.7"/>
+    <path d="M14 49 L86 49" stroke="${OSCURO}" stroke-width="1.5" stroke-dasharray="4 3" fill="none" opacity="0.4"/>
+    <path d="M26 80 L26 90 q 0 4 4 4 L70 94 q 4 0 4 -4 L74 80" fill="${CREMA}" stroke="${OSCURO}" stroke-width="2"/>
+    <path d="M30 80 L70 80" stroke="${MORADO}" stroke-width="3" stroke-linecap="round" fill="none"/>
+  `),
+
+  // Cinturon de campeon. El oro que gano en el ring.
+  cinturon: svg(`
+    <rect x="8" y="42" width="84" height="18" rx="4" fill="${OXIDO}"/>
+    <rect x="8" y="44" width="84" height="5" rx="2" fill="${NARANJA_CLARO}" opacity="0.5"/>
+    <rect x="30" y="30" width="40" height="42" rx="6" fill="${AMARILLO}"/>
+    <rect x="34" y="34" width="32" height="34" rx="4" fill="${OXIDO}"/>
+    <ellipse cx="50" cy="51" rx="11" ry="11" fill="${AMARILLO}"/>
+    <path d="M50 40 L53 47 L61 47 L55 52 L57 60 L50 55 L43 60 L45 52 L39 47 L47 47 z" fill="${OXIDO}"/>
+    <g fill="${AMARILLO}">
+      <circle cx="22" cy="51" r="4"/><circle cx="78" cy="51" r="4"/>
+    </g>
+  `),
+
+  // Bandera. De donde era, lo que llevaba en la sangre.
+  bandera: svg(`
+    <rect x="18" y="14" width="6" height="76" rx="3" fill="${OSCURO}"/>
+    <rect x="24" y="14" width="60" height="22" fill="#012169"/>
+    <path d="M24 14 L84 36 M84 14 L24 36" stroke="#FFFFFF" stroke-width="5"/>
+    <path d="M24 14 L84 36 M84 14 L24 36" stroke="#C8102E" stroke-width="3"/>
+    <path d="M54 14 L54 36 M24 25 L84 25" stroke="#FFFFFF" stroke-width="8"/>
+    <path d="M54 14 L54 36 M24 25 L84 25" stroke="#C8102E" stroke-width="5"/>
+    <circle cx="21" cy="14" r="4" fill="${AMARILLO}"/>
+  `),
+
+  // Bata de entrada. La armadura con la que cruzaba la cortina.
+  entrada: svg(`
+    <path d="M50 10 L70 20 L76 90 L24 90 L30 20 z" fill="${MORADO}"/>
+    <path d="M50 10 L30 20 L24 90 L50 90 z" fill="#5A2B4E"/>
+    <path d="M50 10 L70 20 L76 90 L50 90 z" fill="${MORADO}"/>
+    <path d="M30 20 L50 30 L70 20" stroke="${AMARILLO}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M28 45 L72 45" stroke="${NARANJA}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M26 60 L74 60" stroke="${NARANJA}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M24 75 L76 75" stroke="${NARANJA}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <g fill="${AMARILLO}">
+      <path d="M50 34 q 5 8 0 14 q -5 -6 0 -14 z"/>
+    </g>
+    <path d="M24 90 q 26 8 52 0" stroke="${AMARILLO}" stroke-width="3" fill="none" stroke-linecap="round"/>
+  `),
+
+  // Logo AEW. All Elite Wrestling, su casa.
+  logo_aew: svg(`
+    <rect x="8" y="28" width="84" height="46" rx="6" fill="${OSCURO}"/>
+    <rect x="10" y="30" width="80" height="42" rx="5" fill="#1A1420"/>
+    <g fill="${AMARILLO}" font-family="sans-serif">
+      <text x="50" y="62" text-anchor="middle" font-size="28" font-weight="bold" letter-spacing="-1">AEW</text>
+    </g>
+    <path d="M18 70 L82 70" stroke="${NARANJA}" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M26 74 L74 74" stroke="${NARANJA}" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  `),
+
   // Calaverita de azucar. Lleva su nombre en la frente.
   calaverita: svg(`
     <path d="M50 10 q 32 0 32 32 q 0 16 -8 24 l 0 12 q 0 8 -24 8 q -24 0 -24 -8 l 0 -12 q -8 -8 -8 -24 q 0 -32 32 -32 z" fill="#FFFFFF"/>
