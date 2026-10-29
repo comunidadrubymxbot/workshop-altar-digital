@@ -76,6 +76,14 @@ export const TIPOS = {
     pideTexto: true,
     ayuda: 'El nombre que va en la frente',
   },
+  mascara: {
+    etiqueta: 'Máscara de luchador',
+    grupo: 'personal',
+    nivel: 3,
+    pideTexto: true,
+    ayuda: 'De quién era',
+    pideImagen: true,
+  },
 }
 
 export const NIVELES = [

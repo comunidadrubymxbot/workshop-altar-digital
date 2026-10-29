@@ -167,6 +167,19 @@ export const ARTE = {
     <path d="M50 38 q 16 -4 16 -14 q 0 -8 -8 -8 q -8 0 -8 14" fill="none" stroke="${AMARILLO}" stroke-width="6"/>
   `),
 
+  // Mascara de luchador. La cara que se pone para la batalla.
+  mascara: svg(`
+    <ellipse cx="50" cy="52" rx="34" ry="40" fill="${MORADO}"/>
+    <ellipse cx="50" cy="52" rx="28" ry="33" fill="${ROSA}" opacity="0.4"/>
+    <ellipse cx="33" cy="48" rx="10" ry="7" fill="${OSCURO}"/>
+    <ellipse cx="67" cy="48" rx="10" ry="7" fill="${OSCURO}"/>
+    <path d="M26 62 q 24 14 48 0" stroke="${AMARILLO}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M16 52 q 34 -30 68 0" stroke="${NARANJA}" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M40 88 q 10 6 20 0" stroke="${OSCURO}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M20 56 q -6 0 -6 -8 q 0 -8 6 -8" stroke="${OSCURO}" stroke-width="3" fill="none"/>
+    <path d="M80 56 q 6 0 6 -8 q 0 -8 -6 -8" stroke="${OSCURO}" stroke-width="3" fill="none"/>
+  `),
+
   // Calaverita de azucar. Lleva su nombre en la frente.
   calaverita: svg(`
     <path d="M50 10 q 32 0 32 32 q 0 16 -8 24 l 0 12 q 0 8 -24 8 q -24 0 -24 -8 l 0 -12 q -8 -8 -8 -24 q 0 -32 32 -32 z" fill="#FFFFFF"/>
