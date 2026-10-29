@@ -241,6 +241,13 @@ export const ARTE = {
     <path d="M26 74 L74 74" stroke="${NARANJA}" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
   `),
 
+  // Logo Death Riders. La faccion de PAC, Jon Moxley y los suyos.
+  // Usa la imagen real del logo (buho con alas abiertas y banner).
+  logo_death_riders: svg(`
+    <rect x="0" y="0" width="100" height="100" fill="#FFFFFF"/>
+    <image href="/death_riders_logo.png" x="2" y="8" width="96" height="84" preserveAspectRatio="xMidYMid meet"/>
+  `),
+
   // Calaverita de azucar. Lleva su nombre en la frente.
   calaverita: svg(`
     <path d="M50 10 q 32 0 32 32 q 0 16 -8 24 l 0 12 q 0 8 -24 8 q -24 0 -24 -8 l 0 -12 q -8 -8 -8 -24 q 0 -32 32 -32 z" fill="#FFFFFF"/>

@@ -120,6 +120,13 @@ export const TIPOS = {
     pideTexto: true,
     ayuda: 'All Elite Wrestling',
   },
+  logo_death_riders: {
+    etiqueta: 'Logo Death Riders',
+    grupo: 'personal',
+    nivel: 1,
+    pideTexto: true,
+    ayuda: 'Long may they ride',
+  },
 }
 
 export const NIVELES = [
