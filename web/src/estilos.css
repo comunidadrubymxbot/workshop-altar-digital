@@ -751,3 +751,43 @@ footer {
     opacity: 1;
   }
 }
+
+/* --- Animacion de parpadeo de vela ----------------------------------- */
+
+@keyframes parpadeo-flama {
+  0%   { opacity: 1;    transform: scaleX(1)    scaleY(1)    translateX(0); }
+  20%  { opacity: 0.85; transform: scaleX(0.92) scaleY(1.04) translateX(-0.5px); }
+  40%  { opacity: 1;    transform: scaleX(1.05) scaleY(0.97) translateX(0.5px); }
+  60%  { opacity: 0.9;  transform: scaleX(0.96) scaleY(1.03) translateX(-0.3px); }
+  80%  { opacity: 1;    transform: scaleX(1.02) scaleY(0.99) translateX(0.2px); }
+  100% { opacity: 1;    transform: scaleX(1)    scaleY(1)    translateX(0); }
+}
+
+@keyframes parpadeo-flama-inner {
+  0%   { opacity: 0.9;  transform: scaleX(1)    scaleY(1); }
+  25%  { opacity: 0.7;  transform: scaleX(0.88) scaleY(1.06); }
+  50%  { opacity: 1;    transform: scaleX(1.06) scaleY(0.95); }
+  75%  { opacity: 0.8;  transform: scaleX(0.94) scaleY(1.04); }
+  100% { opacity: 0.9;  transform: scaleX(1)    scaleY(1); }
+}
+
+/* Solo anima las velas; cualquier otro tipo queda intacto. */
+[data-tipo="vela"] .vela-flama {
+  transform-origin: 50px 26px;
+  animation: parpadeo-flama 2.4s ease-in-out infinite;
+}
+
+[data-tipo="vela"] .vela-flama-inner {
+  transform-origin: 50px 26px;
+  animation: parpadeo-flama-inner 2.4s ease-in-out infinite;
+  /* Desfase para que la llama interior y exterior no se muevan al unisono */
+  animation-delay: -0.6s;
+}
+
+/* Respeta la preferencia del usuario de reducir movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  [data-tipo="vela"] .vela-flama,
+  [data-tipo="vela"] .vela-flama-inner {
+    animation: none;
+  }
+}

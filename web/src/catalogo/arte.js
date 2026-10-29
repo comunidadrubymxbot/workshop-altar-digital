@@ -51,8 +51,8 @@ export const ARTE = {
     <rect x="36" y="38" width="9" height="56" fill="#E6DFCE"/>
     <rect x="30" y="90" width="40" height="8" rx="3" fill="${MORADO}"/>
     <path d="M50 34 L50 24" stroke="${OSCURO}" stroke-width="3" stroke-linecap="round"/>
-    <path d="M50 6 q 11 12 11 20 a 11 11 0 0 1 -22 0 q 0 -8 11 -20 z" fill="${NARANJA_CLARO}"/>
-    <path d="M50 14 q 5 7 5 12 a 5 5 0 0 1 -10 0 q 0 -5 5 -12 z" fill="${AMARILLO}"/>
+    <path class="vela-flama" d="M50 6 q 11 12 11 20 a 11 11 0 0 1 -22 0 q 0 -8 11 -20 z" fill="${NARANJA_CLARO}"/>
+    <path class="vela-flama-inner" d="M50 14 q 5 7 5 12 a 5 5 0 0 1 -10 0 q 0 -5 5 -12 z" fill="${AMARILLO}"/>
   `),
 
   // Papel picado. La fiesta que recibe a quien llega.
